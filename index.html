@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kirby Paladan — Software Developer</title>
+<meta name="description" content="Portfolio of Kirby Paladan, a Computer Science student building web, Android, AI and game projects.">
+<meta name="theme-color" content="#0a0b0d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kirby Paladan — Software Developer">
+<meta property="og:description" content="Web, Android and game development, plus local AI projects.">
+<!--
+  Structure: index.html (layout) + portfolio.json (ALL content) + style.css + app.js + assets/
+  To add/edit/remove projects, images and details: edit portfolio.json — no HTML knowledge needed.
+  Serve this folder with any static server (VS Code Live Preview, GitHub Pages, Vercel, npx serve).
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Figtree:wght@400..700&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="prog" aria-hidden="true"></div>
+
+<header><div class="wrap bar">
+  <a class="logo serif" href="#top">K. Paladan</a>
+  <nav aria-label="Main">
+    <a class="mono opt" href="#about">About</a><a class="mono" href="#work">Work</a><a class="mono opt" href="#skills">Skills</a><a class="mono" href="#contact">Contact</a>
+    <button class="btn beam" type="button" data-resume>View resume</button>
+  </nav></div></header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap">
+      <p class="mono" id="hero-tagline"></p>
+      <h1 class="serif" data-split id="hero-name"></h1>
+      <p class="lede serif" data-split id="hero-lede"></p>
+      <div class="cta"><a class="btn p beam" href="#work">View work</a><button class="btn beam" type="button" data-resume>View resume</button></div>
+      <div class="meta mono" data-r id="hero-meta"></div>
+    </div></div>
+
+  <div class="tick mono" aria-hidden="true" id="ticker"></div>
+
+  <section id="about"><div class="wrap">
+    <div class="hd"><h2 class="serif" data-r>About <em>me</em></h2></div>
+    <div class="about">
+      <div data-r id="about-text"></div>
+      <div class="stats" data-r id="about-stats"></div>
+    </div></div></section>
+
+  <section id="work"><div class="wrap">
+    <div class="hd"><h2 class="serif" data-r>Selected <em>work</em></h2><span class="mono" id="work-count"></span></div>
+    <div class="grid" id="work-grid"></div>
+  </div></section>
+
+  <section id="skills"><div class="wrap">
+    <div class="hd"><h2 class="serif" data-r>What I <em>use</em></h2><span class="mono" id="skills-note"></span></div>
+    <div class="skills" data-r id="skills-grid"></div>
+  </div></section>
+
+  <section id="background"><div class="wrap">
+    <div class="hd"><h2 class="serif" data-r>Back<em>ground</em></h2></div>
+    <div class="bg" data-r id="background-grid"></div>
+  </div></section>
+
+  <section id="contact"><div class="wrap">
+    <span class="mono">Contact</span>
+    <p class="big serif" data-r id="contact-heading"></p>
+    <p data-r style="color:var(--mut);max-width:48ch;margin:-.5rem 0 1.5rem" id="contact-text"></p>
+    <div class="cta" id="links"></div>
+  </div></section>
+</main>
+
+<footer><div class="wrap"><span class="mono" id="footer-note"></span><a class="mono" href="#top">Back to top</a></div></footer>
+
+<dialog id="rd" aria-labelledby="rt" data-lenis-prevent>
+  <div class="rh"><strong id="rt" class="serif" style="font-size:1.5rem"></strong><span><a class="btn" id="pr" href="assets/resume.pdf" download="Kirby-Paladan-Resume.pdf">Download PDF</a> <button class="btn" id="rc" type="button">Close</button></span></div>
+  <div class="rb" id="rbody"></div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

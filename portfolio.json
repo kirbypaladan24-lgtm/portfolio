@@ -1,0 +1,465 @@
+{
+  "site": {
+    "title": "Kirby Paladan — Software Developer",
+    "description": "Portfolio of Kirby Paladan, a Computer Science student building web, Android, AI and game projects.",
+    "footerNote": "© 2026 Kirby Paladan"
+  },
+  "person": {
+    "name": "Kirby Paladan",
+    "shortName": "K. Paladan",
+    "tagline": "Software developer · Web, Android & game development",
+    "lede": "Building practical software through creativity, problem-solving and continuous learning.",
+    "meta": [
+      "Goa, Camarines Sur",
+      "Computer Science"
+    ],
+    "phone": "+63 907 817 3193",
+    "email": "kirbypaladan24@gmail.com",
+    "github": "https://github.com/kirbypaladan24-lgtm"
+  },
+  "ticker": [
+    "Python",
+    "Ollama",
+    "Whisper",
+    "FastAPI",
+    "React",
+    "FAISS",
+    "SQLite",
+    "Luau",
+    "Roblox Studio",
+    "C++"
+  ],
+  "about": {
+    "paragraphs": [
+      "I’m a Computer Science student at Partido State University, Goa Campus, on track to graduate in 2028. I like turning real problems and creative ideas into working software: web platforms, database-driven systems, Android apps, local AI tools and games.",
+      "I build past the demo, with user workflows, data and deployment. Right now I’m deepening my Luau, learning data structures and algorithms in C++, and building a new horror game."
+    ],
+    "stats": [
+      {
+        "value": "10",
+        "label": "Projects, two in progress"
+      },
+      {
+        "value": "25k+",
+        "label": "Lines in JARVIS"
+      },
+      {
+        "value": "84",
+        "label": "Tools it can route to"
+      },
+      {
+        "value": "6",
+        "label": "Pipeline layers"
+      }
+    ]
+  },
+  "work": {
+    "projects": [
+      {
+        "category": "Android app · Hackathon 2nd place of 7",
+        "title": "Student Codex",
+        "image": "student-codex.jpg",
+        "description": "Assignments, projects and exams reach students through Google Classroom, group chats and in-class announcements, so deadlines pile up unseen. Student Codex is an Android-first workload platform: it syncs Google Classroom coursework read-only, lets students add everything else by hand, and gives teachers a calendar view of the combined workload.",
+        "live": null,
+        "details": {
+          "summary": "How it works",
+          "open": false,
+          "items": [
+            "A teacher dashboard with calendars and filters by course, section, year level and program.",
+            "A Supabase backend on PostgreSQL, with migration-based schema, Row Level Security policies and authorization tests.",
+            "Source identifiers on synced coursework prevent duplicate records.",
+            "Built every piece of the software in two days — the Android app, the Supabase/PostgreSQL database, the Google Classroom sync and the teacher dashboard — while my two teammates wrote the paper and slides. I then delivered the main presentation and defended the architecture in the judges’ technical Q&A, from the Classroom integration and JSON processing to the PostgreSQL structure and duplicate prevention."
+          ],
+          "facts": "2nd place of 7 teams · ParSU IGNITE CryptCamp Hackathon · Nov 2026",
+          "flow": null
+        },
+        "tags": [
+          "Kotlin",
+          "Android",
+          "Supabase",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "category": "Cultural heritage platform",
+        "title": "Pamanang Bayan",
+        "image": "pamanang-bayan.jpg",
+        "description": "A platform for preserving and sharing Indigenous knowledge across the Philippines: stories, oral histories, languages and landmarks on a map, built around consent and responsible representation.",
+        "live": "https://parsucis-alpha.vercel.app/",
+        "details": {
+          "summary": "How it works",
+          "open": false,
+          "items": [
+            "Cultural landmarks mapped with Leaflet and OpenStreetMap.",
+            "Firebase authentication with role-based content management, moderation and reporting.",
+            "A Node and Express backend with PostgreSQL, deployed on Vercel and Render.",
+            "Installable as a Progressive Web App."
+          ],
+          "facts": null,
+          "flow": null
+        },
+        "tags": [
+          "JavaScript",
+          "Vite",
+          "Firebase",
+          "Node.js",
+          "PostgreSQL"
+        ]
+      },
+      {
+        "category": "Document assembly tool",
+        "title": "Bindery",
+        "image": "bindery.jpg",
+        "description": "Upload documents, set their exact order, preview them full screen, then download one combined file. Temporary uploads are cleaned up automatically.",
+        "live": "https://document-binder.onrender.com/",
+        "details": {
+          "summary": "How it works",
+          "open": false,
+          "items": [
+            "Handles PDF, Word, PowerPoint, ODT, RTF and plain text.",
+            "Docker packages the system’s plugins and tools for the desktop build.",
+            "Built around predictable ordering and previewing before output.",
+            "A desktop version for local PDF work is part of the concept."
+          ],
+          "facts": null,
+          "flow": null
+        },
+        "tags": [
+          "Web app",
+          "Document handling",
+          "Docker",
+          "Render"
+        ]
+      },
+      {
+        "category": "Booth ordering system",
+        "title": "Coffee++",
+        "image": "coffee.jpg",
+        "description": "A digital menu and order system for a student-organization booth. Customers order from a QR menu, the booth tracks waiting and served orders, and the admin side reports sales.",
+        "live": "https://coffee-specs-org.vercel.app/",
+        "details": {
+          "summary": "How it works",
+          "open": false,
+          "items": [
+            "Hot and cold options with product images, prices and optional GCash QR payment details.",
+            "An order dashboard with sales and profit analytics and Excel-compatible export.",
+            "The customer site is separate from the local admin and scanning workflow."
+          ],
+          "facts": null,
+          "flow": null
+        },
+        "tags": [
+          "JavaScript",
+          "JSON storage",
+          "Vercel"
+        ]
+      },
+      {
+        "category": "Student app showcase",
+        "title": "SPECS App Store",
+        "image": "specs-app-store.jpg",
+        "description": "A platform where the Computer Science community showcases student-built apps — listings, submissions, voting and comments. Built together with another developer.",
+        "live": "https://specs-app-store.vercel.app/discover",
+        "details": {
+          "summary": "How it works",
+          "open": false,
+          "items": [
+            "A discovery page with student application listings and descriptions.",
+            "Built security and authentication: Google OAuth sign-in, Cloudflare Turnstile captcha, sensitive-link blocking and the privacy policy.",
+            "Leaderboards, comments and user profiles on Supabase/PostgreSQL, with Google Cloud APIs.",
+            "186 automated tests in Vitest; deployed on Vercel.",
+            "Large downloads are linked externally to stay within free hosting limits."
+          ],
+          "facts": null,
+          "flow": null
+        },
+        "tags": [
+          "React",
+          "TypeScript",
+          "Supabase",
+          "Vercel",
+          "Collaboration"
+        ]
+      },
+      {
+        "category": "Business website · in planning",
+        "title": "AV Fitness Gym",
+        "image": "av-fitness-gym.jpg",
+        "description": "A website for AV Fitness Gym with a calm, dim-lit look in black, white and dark gray, built around the gym’s own logo. It’s still in planning, so it isn’t live yet.",
+        "live": null,
+        "details": {
+          "summary": "Direction",
+          "open": false,
+          "items": [
+            "Comfortable, smooth and aesthetic, with dim lighting.",
+            "Status: planning. Pages and features will be listed once they’re built and verified."
+          ],
+          "facts": null,
+          "flow": null
+        },
+        "tags": [
+          "Web design",
+          "Business website"
+        ]
+      }
+    ],
+    "more": {
+      "label": "More builds — local AI & games",
+      "projects": [
+        {
+          "category": "Offline voice AI",
+          "title": "JARVIS",
+          "image": "jarvis.jpg",
+          "description": "A voice-first assistant that runs on local models. Every command passes a six-layer pipeline, and a validation gate checks the small model’s tool pick before anything executes.",
+          "live": null,
+          "details": {
+            "summary": "How it works",
+            "open": false,
+            "items": [
+              "A small model dispatches simple tools; a larger one handles multi-step chains.",
+              "Multi-command splitting with one combined spoken reply.",
+              "A calibration tool tunes routing thresholds from its own logs.",
+              "Faster-Whisper in, Piper out. Core features need no cloud."
+            ],
+            "facts": null,
+            "flow": [
+              "State machine",
+              "Language",
+              "Normalize",
+              "Fast path",
+              "Router",
+              "Fallback"
+            ]
+          },
+          "tags": [
+            "Python",
+            "Ollama",
+            "Whisper",
+            "Piper"
+          ]
+        },
+        {
+          "category": "Local code editor",
+          "title": "Mini IDE",
+          "image": "mini-ide.jpg",
+          "description": "An AI code editor that runs entirely on my machine. It edits several files at once, plans across the whole workspace, and shows each agent’s reasoning as it works.",
+          "live": null,
+          "details": {
+            "summary": "How it works",
+            "open": false,
+            "items": [
+              "Surgical search/replace edits instead of whole-file rewrites.",
+              "FAISS retrieval gives it awareness of the codebase.",
+              "Critic, security and performance agents review every change."
+            ],
+            "facts": "7 milestones · 4 improvement sprints · 3 local models",
+            "flow": null
+          },
+          "tags": [
+            "FastAPI",
+            "React",
+            "Monaco",
+            "FAISS",
+            "SQLite"
+          ]
+        },
+        {
+          "category": "Roblox game · 3 published",
+          "title": "AfterHours",
+          "image": "afterhours.jpg",
+          "description": "An open-world hangout with exploration, parkour, a SkyWars mode and a singing stage. Inventory and the item shop persist across sessions. One of three games I’ve designed and published on Roblox.",
+          "live": null,
+          "details": {
+            "summary": "How it works",
+            "open": false,
+            "items": [
+              "Rafts on waypoint paths, rope swings, checkpoints and a two-mode carry system.",
+              "The stage mic runs a full audio chain, from compressor to reverb, with eight vocal presets.",
+              "Ten-player SkyWars matchmaking and a day/night cycle."
+            ],
+            "facts": "12 checkpoints · 9 rafts · 11 rope swings · 8 vocal presets",
+            "flow": null
+          },
+          "tags": [
+            "Luau",
+            "Roblox Studio",
+            "DataStore"
+          ]
+        },
+        {
+          "category": "In development",
+          "title": "Horror game",
+          "image": "horror-game.jpg",
+          "description": "Something is stalking you, and it only moves when nobody is looking. One to five players race to collect five keys and escape.",
+          "live": null,
+          "details": {
+            "summary": "How it works",
+            "open": false,
+            "items": [
+              "First-person only, with a minimal dot crosshair.",
+              "The monster follows footprint and scent trails to hunt players it cannot see.",
+              "Team sizes from solo to five, plus a scary start page and settings menu."
+            ],
+            "facts": "1 monster · 1–5 players · 5 keys",
+            "flow": null
+          },
+          "tags": [
+            "Luau",
+            "Roblox",
+            "Multiplayer"
+          ]
+        }
+      ]
+    }
+  },
+  "skills": {
+    "note": "Unreal Engine, Go and security: still learning",
+    "groups": [
+      {
+        "label": "AI & data",
+        "items": [
+          "Local LLMs with Ollama",
+          "Speech to text and back",
+          "Retrieval with FAISS",
+          "Tool routing and validation"
+        ]
+      },
+      {
+        "label": "Languages",
+        "items": [
+          "Python",
+          "JavaScript",
+          "Luau (growing)",
+          "C++ (learning)",
+          "Java, TypeScript, Kotlin",
+          "HTML and CSS"
+        ]
+      },
+      {
+        "label": "Web & backend",
+        "items": [
+          "React and Vite",
+          "Tailwind CSS and WebSocket",
+          "FastAPI",
+          "SQLite",
+          "Monaco editor"
+        ]
+      },
+      {
+        "label": "Games",
+        "items": [
+          "Unity and Roblox Studio",
+          "DataStore persistence",
+          "Matchmaking and PvP",
+          "Audio and UI systems"
+        ]
+      },
+      {
+        "label": "Backend & data",
+        "items": [
+          "Node.js and Express",
+          "REST APIs",
+          "PostgreSQL",
+          "Firebase and Firestore",
+          "Supabase, RLS and migrations",
+          "AWS and Google Cloud APIs",
+          "Google OAuth and Turnstile"
+        ]
+      },
+      {
+        "label": "Android",
+        "items": [
+          "Kotlin and Java",
+          "Android Studio",
+          "Mobile interfaces",
+          "Google Classroom integration"
+        ]
+      },
+      {
+        "label": "Tools & deploy",
+        "items": [
+          "VS Code and GitHub",
+          "Vercel and Render",
+          "Docker and Vitest",
+          "Testing and debugging"
+        ]
+      }
+    ]
+  },
+  "background": {
+    "rows": [
+      {
+        "label": "Education",
+        "text": "BS Computer Science, Partido State University — Goa Campus, College of Engineering and Computing, expected 2028. Coursework includes data structures and algorithms, object-oriented programming, databases and web development."
+      },
+      {
+        "label": "Certifications",
+        "text": "SoloLearn programming certificates, and the 2nd-place certificate from ParSU IGNITE CryptCamp."
+      },
+      {
+        "label": "Leadership",
+        "lines": [
+          "Class President",
+          "Built an Android app that records collected class payments, computes totals and tracks who has and hasn’t paid",
+          "Delivered the main presentation for Student Codex at the ParSU IGNITE CryptCamp Hackathon, where the team placed second",
+          "Co-developed SPECS App Store"
+        ]
+      },
+      {
+        "label": "Coursework builds",
+        "columns": [
+          [
+            "C++ ATM and banking console app, a course final project",
+            "Stack on a doubly linked list, for infix to postfix",
+            "Cartesian point identifier using a queue"
+          ],
+          [
+            "Java command-line calculator",
+            "Linked list, stack, queue and recursion exercises",
+            "Python network-scanning and packet-analysis labs with Scapy, in an educational setting"
+          ]
+        ]
+      },
+      {
+        "label": "How I work",
+        "columns": [
+          [
+            "Start from a real problem",
+            "Ship working features, not mockups",
+            "Improve through testing and debugging"
+          ],
+          [
+            "Design within hosting and storage limits",
+            "Handle community data responsibly"
+          ]
+        ]
+      },
+      {
+        "label": "Exploring next",
+        "columns": [
+          [
+            "Software engineering at scale",
+            "Web security and authorized testing",
+            "AI-assisted developer tools"
+          ],
+          [
+            "System architecture",
+            "Unreal Engine and Go"
+          ]
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Let’s build <em>something.</em>",
+    "text": "Based in Goa, Camarines Sur. Looking for a Manila-based on-the-job training placement, plus collaboration and freelance projects."
+  },
+  "resume": {
+    "dialogTitle": "Resume — Kirby Paladan",
+    "pdf": "assets/resume.pdf",
+    "pages": [
+      "assets/img/resume-page-1.webp"
+    ],
+    "downloadName": "Kirby-Paladan-Resume.pdf"
+  }
+}
