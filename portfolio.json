@@ -159,7 +159,7 @@
         "title": "SPECS App Store",
         "image": "specs-app-store.jpg",
         "description": "A platform where the Computer Science community showcases student-built apps — listings, submissions, voting and comments. Built together with another developer.",
-        "live": "https://specs-app-store.vercel.app/discover",
+        "live": "https://specs-code-canvas.vercel.app/",
         "details": {
           "summary": "How it works",
           "open": false,
