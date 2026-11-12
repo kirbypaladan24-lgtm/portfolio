@@ -386,6 +386,68 @@
       }
     ]
   },
+  "certificates": {
+    "note": "Click a certificate or its title to open the verification page",
+    "effects": false,
+    "imageBackground": "#0a0b0d",
+    "orgs": [
+      {
+        "name": "Microsoft",
+        "logo": "certificates/logos/microsoft.svg",
+        "logoSize": 2,
+        "credentials": [
+          {
+            "title": "Configure and migrate to Azure Database for PostgreSQL",
+            "kind": "Applied Skills",
+            "date": "Nov 2026",
+            "verify": "https://learn.microsoft.com/en-us/users/kirbypaladan-0734/credentials/9ad8c24089db6987",
+            "image": "certificates/Microsoft-Applied-Skills-Configure-and-migrate-to-Azure-Database-for-PostgreSQL.png"
+          }
+        ]
+      },
+      {
+        "name": "International Business Machines Corporation",
+        "logo": "certificates/logos/ibm.svg",
+        "logoSize": 2,
+        "credentials": [
+          {
+            "title": "Back-End Web Development",
+            "date": "Nov 2026",
+            "verify": "https://www.credly.com/badges/aa9f9a19-79c5-4d7a-a9c1-d0752c897628/public_url",
+            "image": "certificates/IBM-Back-End-Web-Development.png"
+          },
+          {
+            "title": "Front-End Web Development",
+            "date": "Nov 2026",
+            "verify": "https://www.credly.com/badges/0ee2c857-acce-4630-808d-540e80922a5d/public_url",
+            "image": "certificates/IBM-Front-End-Web-Development.png"
+          },
+          {
+            "title": "Interactive Front-End Development",
+            "date": "Nov 2026",
+            "verify": "https://www.credly.com/badges/0ee2c857-acce-4630-808d-540e80922a5d/public_url",
+            "image": "certificates/Interactive-Front-End-Development.png"
+          }
+        ]
+      },
+      {
+        "name": "GitHub",
+        "logo": "certificates/logos/github.svg",
+        "logoSize": 3,
+        "credentials": [
+          
+        ]
+      },
+      {
+        "name": "SoloLearn",
+        "logo": "certificates/logos/SoloLearn.png",
+        "logoSize": 3,
+        "credentials": [
+          
+        ]
+      }
+    ]
+  },
   "background": {
     "rows": [
       {
@@ -394,7 +456,7 @@
       },
       {
         "label": "Certifications",
-        "text": "SoloLearn programming certificates, and the 2nd-place certificate from ParSU IGNITE CryptCamp."
+        "text": "Microsoft and IBM credentials with verification links in the certificates section above, plus SoloLearn programming certificates and the 2nd-place certificate from ParSU IGNITE CryptCamp."
       },
       {
         "label": "Leadership",

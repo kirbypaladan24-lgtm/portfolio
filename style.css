@@ -159,3 +159,44 @@ h2 em,.big em{font-style:normal;font-weight:400;color:var(--mut)}
 @media(prefers-reduced-motion:reduce){.shot img,.shot::after{transition:none}.card:is(:hover,:focus-within) .shot img,.card:has(details[open]) .shot img{transform:none}}
 .rpg{display:block;width:100%;height:auto;margin:0 0 1rem;border:1px solid var(--line);border-radius:6px}
 .rb:has(.rpg){padding:1rem}
+
+/* Certificates — organization blocks: logo left, name beside it; credentials grow
+   horizontally as equal-width cards, wrapping to a new line only when full.
+   Each card shows the certificate image on top with its text underneath.
+   Every logo renders inside one uniform 5rem x 2.2rem frame — same width and
+   height for all organizations. app.js auto-sizes each mark to equal optical
+   area (a square fills the frame height; wider marks shrink to the same area)
+   times the org's "logoSize" multiplier from portfolio.json — multipliers above
+   1 grow the band (up to ~1.45x its height) so bigger marks stay aligned with the
+   name and cap there; the monogram fallback tile occupies that same footprint. */
+.certs{display:block}
+.org{display:grid;grid-template-columns:5rem minmax(0,1fr);column-gap:1.5rem;row-gap:1.05rem;padding:1.6rem 0;border-top:1px solid var(--line)}
+.org:last-child{border-bottom:1px solid var(--line)}
+.orgl{grid-row:1;width:5rem;height:2.2rem;display:flex;align-items:center;justify-content:center}
+.orgl img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain}
+.orgm{display:grid;place-items:center;width:5rem;height:2.2rem;border:1px solid var(--line);border-radius:8px;color:var(--mut)}
+.orgn{grid-column:2;margin:0;font-size:clamp(1.25rem,1.9vw,1.55rem);line-height:1.05;align-self:center}
+.creds{grid-column:2;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,16rem),1fr));gap:1.25rem}
+.creds li{display:flex;flex-direction:column;gap:.6rem;min-width:0}
+.ctxt{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.ct{color:var(--fg);text-decoration:none;font-size:1.05rem}
+.ct .ar{color:var(--mut);font-size:.8em}
+.ct:hover{text-decoration:underline;text-decoration-color:var(--acc);text-underline-offset:.45em}
+.ct:hover .ar{color:var(--acc)}
+.ctd{text-align:left}
+.vfy{color:var(--acc);text-decoration:none;white-space:nowrap;width:fit-content}
+.vfy:hover{text-decoration:underline;text-underline-offset:.6em}
+.cimg{position:relative;display:block;overflow:hidden;isolation:isolate;border:1px solid var(--line);border-radius:10px;background:#fff;aspect-ratio:6/5;width:100%;margin:0}
+.cimg img{display:block;width:100%;height:100%;object-fit:contain;filter:grayscale(1) contrast(1.05) brightness(.92);transform:scale(1.001);transition:filter .8s cubic-bezier(.16,1,.3,1),transform 1.1s cubic-bezier(.16,1,.3,1)}
+.cimg::after{content:"";position:absolute;inset:0;background:#5f7a93;mix-blend-mode:color;transition:opacity .8s cubic-bezier(.16,1,.3,1);pointer-events:none}
+.creds li:is(:hover,:focus-within) .cimg img{filter:none;transform:scale(1.06)}
+.creds li:is(:hover,:focus-within) .cimg::after{opacity:0}
+@media(hover:none){.cimg img{filter:none}.cimg::after{opacity:0}}
+@media(max-width:640px){.org{row-gap:.8rem;padding:1.35rem 0}.orgl,.orgm{height:2rem}.creds{gap:1rem}}
+@media(prefers-reduced-motion:reduce){.cimg img,.cimg::after{transition:none}.creds li:is(:hover,:focus-within) .cimg img{transform:none}}
+
+/* Certificate image effects — toggled only via portfolio.json:
+   "effects": false on certificates (global) or "effect": false on a credential. */
+.creds li.nofx .cimg img{filter:none;transform:none;transition:none}
+.creds li.nofx .cimg::after{display:none}
+.creds li.nofx:is(:hover,:focus-within) .cimg img{transform:none}

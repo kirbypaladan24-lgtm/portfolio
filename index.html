@@ -12,10 +12,28 @@
 <!--
   Structure: index.html (layout) + portfolio.json (ALL content) + style.css + app.js + assets/
   To add/edit/remove projects, images and details: edit portfolio.json — no HTML knowledge needed.
+  Certificates: listed per organization under "certificates" -> "orgs" in portfolio.json —
+  name, logo (path under certificates/logos/ or any URL; every logo renders inside one
+  uniform fixed-size frame — same width and height for all — auto-sized to equal optical
+  area so no logo looks bigger than another; a same-size monogram tile shows if omitted),
+  optional "logoSize" (number that scales that org's logo: 1 = default equal size, 0.8
+  smaller, up to ~1.45 larger — a bigger logo grows its own row band so the name stays
+  aligned; values beyond that cap there. Changes show on reload — no cache, edits
+  always load fresh),
+  and credentials[] with title, verify link, optional kind, date and image (path to the
+  certificate picture). Credentials grow horizontally as equal-width cards — image on
+  top, linked title, kind/date and Verified link underneath — wrapping to a new line
+  only when the current one is full; the section sits between About and Selected work.
+  Certificate image backdrop: "imageBackground": "<css color>" on the certificates
+  object sets the color behind certificate images (default "#ffffff" white;
+  hex, rgb(), hsl() or a named color).
+  Image effects (idle blue-gray filter + hover zoom): "effects": true|false on the
+  certificates object sets the default for all images; "effect": true|false on one
+  credential overrides it for that image. No visible UI — toggle by editing JSON only.
   Serve this folder with any static server (VS Code Live Preview, GitHub Pages, Vercel, npx serve).
 -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=Figtree:wght@400..700&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 <div class="prog" aria-hidden="true"></div>
@@ -23,7 +41,7 @@
 <header><div class="wrap bar">
   <a class="logo serif" href="#top">K. Paladan</a>
   <nav aria-label="Main">
-    <a class="mono opt" href="#about">About</a><a class="mono" href="#work">Work</a><a class="mono opt" href="#skills">Skills</a><a class="mono" href="#contact">Contact</a>
+    <a class="mono opt" href="#about">About</a><a class="mono opt" href="#certs">Certs</a><a class="mono" href="#work">Work</a><a class="mono opt" href="#skills">Skills</a><a class="mono" href="#contact">Contact</a>
     <button class="btn beam" type="button" data-resume>View resume</button>
   </nav></div></header>
 
@@ -45,6 +63,12 @@
       <div data-r id="about-text"></div>
       <div class="stats" data-r id="about-stats"></div>
     </div></div></section>
+
+  <section id="certs"><div class="wrap">
+    <div class="hd"><h2 class="serif" data-r>Certifi<em>cates</em></h2><span class="mono" id="certs-note"></span></div>
+    <div class="certs" id="certs-grid"></div>
+  </div></section>
+
 
   <section id="work"><div class="wrap">
     <div class="hd"><h2 class="serif" data-r>Selected <em>work</em></h2><span class="mono" id="work-count"></span></div>
@@ -79,6 +103,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="app.js"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

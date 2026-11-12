@@ -13,7 +13,7 @@
   (async () => {
     let data;
     try {
-      const res = await fetch("portfolio.json");
+      const res = await fetch("portfolio.json?v=" + Date.now()); // cache-bust: always read fresh edits
       if (!res.ok) throw new Error("HTTP " + res.status);
       data = await res.json();
     } catch (e) {
@@ -66,6 +66,69 @@
         "<div><span class=\"mono\">" + esc(g.label) + "</span><ul>" +
         (g.items || []).map(i => "<li>" + esc(i) + "</li>").join("") +
         "</ul></div>").join("");
+    }
+
+    if (x.certificates) {
+      if (x.certificates.note) $("#certs-note").textContent = x.certificates.note;
+      const cg = $("#certs-grid");
+      const fxDefault = x.certificates.effects !== false; // JSON global toggle
+      let orgs = x.certificates.orgs;
+      if (!Array.isArray(orgs) && Array.isArray(x.certificates.items)) {
+        // flat legacy list: group credentials by issuer
+        const groups = new Map();
+        x.certificates.items.forEach(it => {
+          const k = it.issuer || "Certificate";
+          if (!groups.has(k)) groups.set(k, []);
+          groups.get(k).push(it);
+        });
+        orgs = Array.from(groups, ([name, credentials]) => ({ name, credentials }));
+      }
+      if (cg && Array.isArray(orgs)) {
+        cg.innerHTML = orgs.map(o => org(o, fxDefault)).join("");
+
+        // certificate image backdrop color (portfolio.json: certificates.imageBackground)
+        const bg = String(x.certificates.imageBackground || "").trim();
+        if (/^(#[0-9a-fA-F]{3,8}|rgba?\([\d\s,.%]+\)|hsla?\([\d\s,.%deg]+\)|[a-zA-Z]{3,20})$/.test(bg))
+          cg.querySelectorAll(".cimg").forEach(el => { el.style.backgroundColor = bg; });
+        // logos: auto-sized to equal optical area (a square fills the frame height,
+        // wider marks shrink to the same area) so no logo outweighs another; a
+        // "logoSize" multiplier on an org in portfolio.json scales its logo
+        // (1 = default). Growing past 1 expands the logo band (up to ~1.45x) so
+        // bigger marks stay aligned with the name; larger values cap there.
+        // Failed logos swap to the monogram tile.
+        const sizeLogo = img => {
+          const box = img.parentNode;
+          const nw = img.naturalWidth, nh = img.naturalHeight;
+          if (!box || !nw || !nh) return;
+          const bw = box.clientWidth;
+          box.style.height = "";                  // reset, then read the CSS band
+          const bh = box.clientHeight;
+          if (!bw || !bh) return;
+          const r = nw / nh;
+          let w = Math.sqrt(bh * bh * r), h = w / r;
+          const m = parseFloat(img.dataset.size);
+          if (isFinite(m) && m > 0) { w *= m; h *= m; }
+          const band = Math.max(bh, Math.min(h, bh * 1.45));
+          const k = Math.min(bw / w, band / h, 1);
+          img.style.width = (w * k).toFixed(2) + "px";
+          img.style.height = (h * k).toFixed(2) + "px";
+          box.style.height = band.toFixed(2) + "px";
+        };
+        cg.querySelectorAll(".orgl img").forEach(img => {
+          const fail = () => {
+            if (!img.parentNode) return;
+            const m = d.createElement("span");
+            m.className = "orgm mono";
+            m.textContent = img.getAttribute("data-mono") || "";
+            img.replaceWith(m);
+          };
+          if (img.complete && img.naturalWidth === 0) fail();
+          else img.addEventListener("error", fail);
+          if (img.complete && img.naturalWidth > 0) sizeLogo(img);
+          else img.addEventListener("load", () => sizeLogo(img));
+        });
+        addEventListener("resize", () => cg.querySelectorAll(".orgl img").forEach(sizeLogo));
+      }
     }
 
     if (x.background && Array.isArray(x.background.rows)) {
@@ -121,6 +184,57 @@
     h += "</article>";
     return h;
   }
+
+  function initials(name) {
+    return String(name || "").trim().split(/\s+/).map(w => w[0]).join("").slice(0, 3).toUpperCase();
+  }
+
+  /* Organization block — logo on the left, name beside it, credentials listed underneath. */
+  function org(o, fxDefault) {
+    let l = '<span class="orgl">';
+    if (o.logo) {
+      const sz = parseFloat(o.logoSize);
+      l += '<img src="' + esc(o.logo) + '" alt="' + esc(o.name || "Organization") + ' logo" data-mono="' + esc(initials(o.name)) + '"' +
+        (isFinite(sz) && sz > 0 ? ' data-size="' + sz + '"' : "") +
+        ' loading="lazy" decoding="async">';
+    } else
+      l += '<span class="orgm mono">' + esc(initials(o.name)) + "</span>";
+    l += "</span>";
+    const creds = (o.credentials || []).map(c => cred(c, o.name, fxDefault)).join("");
+    return '<article class="org" data-r>' + l +
+      '<h3 class="orgn serif">' + esc(o.name || "") + "</h3>" +
+      '<ul class="creds">' + creds + "</ul></article>";
+  }
+
+  /* One credential — the certificate image links to its verification page, with the
+     linked title, kind/date and a subtle Verified link beside it. */
+  function cred(c, orgName, fxDefault) {
+    const meta = [c.kind, c.date].filter(Boolean).join(" · ");
+    let host = "";
+    try { host = new URL(c.verify).hostname.replace(/^www\./, ""); } catch (e) { /* leave blank */ }
+    // image effects: per-credential "effect" overrides the global "effects" default
+    const fxOn = typeof c.effect === "boolean" ? c.effect : fxDefault;
+    let h = fxOn === false ? '<li class="nofx">' : "<li>";
+    if (c.image) {
+      const alt = (orgName ? orgName + " certificate: " : "Certificate — ") + (c.title || "");
+      const img = '<img src="' + esc(c.image) + '" alt="' + esc(alt) + '" loading="lazy" decoding="async">';
+      h += c.verify
+        ? '<a class="cimg" href="' + esc(c.verify) + '" target="_blank" rel="noopener" aria-label="Open verification for ' + esc(c.title || "certificate") + '">' + img + "</a>"
+        : '<div class="cimg">' + img + "</div>";
+    }
+    h += '<div class="ctxt">';
+    if (c.verify)
+      h += '<a class="ct" href="' + esc(c.verify) + '" target="_blank" rel="noopener">' +
+           esc(c.title || "Credential") + '<span class="ar" aria-hidden="true"> ↗</span></a>';
+    else
+      h += '<span class="ct">' + esc(c.title || "Credential") + "</span>";
+    if (meta) h += '<span class="ctd mono">' + esc(meta) + "</span>";
+    if (c.verify) h += '<a class="vfy mono" href="' + esc(c.verify) + '" target="_blank" rel="noopener">Verified — ' + esc(host || "issuer page") + " ↗</a>";
+    h += "</div></li>";
+    return h;
+  }
+
+
 
   /* ---------- resume dialog ---------- */
   function setupResume(cfg) {
