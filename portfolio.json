@@ -406,10 +406,29 @@
         ]
       },
       {
+        "name": "Google Cloud",
+        "logo": "certificates/logos/google.svg",
+        "logoSize": 3,
+        "credentials": [
+          {
+            "title": "The Basics of Google Cloud Compute Skill Badge",
+            "date": "Nov 2026",
+            "verify": "https://www.credly.com/badges/1d889283-07ac-4b17-9432-d62d346de5a2/public_url",
+            "image": "certificates/Google-the-basics-of-google-cloud-compute-skill-badge.png"
+          }
+        ]
+      },
+      {
         "name": "International Business Machines Corporation",
         "logo": "certificates/logos/ibm.svg",
         "logoSize": 2,
         "credentials": [
+          {
+            "title": "Software Engineering for Web Developers Pathway",
+            "date":"Nov 2026",
+            "verify": "https://www.credly.com/users/kirby-paladan/edit/badges/credly",
+            "image": "certificates/IBM-Software-Engineering-for-Web-Developers-Pathway.png"
+          },
           {
             "title": "Back-End Web Development",
             "date": "Nov 2026",
@@ -426,31 +445,33 @@
             "title": "Interactive Front-End Development",
             "date": "Nov 2026",
             "verify": "https://www.credly.com/badges/0ee2c857-acce-4630-808d-540e80922a5d/public_url",
-            "image": "certificates/Interactive-Front-End-Development.png"
+            "image": "certificates/IBM-Interactive-Front-End-Development.png"
           },
           {
             "title": "Responsive Web Page Development",
             "date":"Nov 2026",
             "verify": "https://www.credly.com/badges/6de92232-5556-4c90-ac29-c176dbe9f9ab/public_url",
             "image": "certificates/IBM-Responsive-Web-Page-Development.png"
+          },
+          {
+            "title": "Integration of Database",
+            "date": "Nov 2026",
+            "verify": "https://www.credly.com/badges/c1b58224-746d-4704-bccd-7b1d4202e948/public_url",
+            "image": "certificates/IBM-Integration-of-Database.png"
+          },
+          {
+            "title": "Web Application Testing and Deployment",
+            "date": "Nov 2026",
+            "verify": "https://www.credly.com/badges/4be266f4-b48f-40a0-b493-135c02a693f7/public_url",
+            "image": "certificates/IBM-Web-Application-Testing-and-Deployment.png"
           }
         ]
       },
       {
-        "name": "GitHub",
+        "name": "Github",
         "logo": "certificates/logos/github.svg",
         "logoSize": 3,
-        "credentials": [
-          
-        ]
-      },
-      {
-        "name": "SoloLearn",
-        "logo": "certificates/logos/SoloLearn.png",
-        "logoSize": 3,
-        "credentials": [
-          
-        ]
+        "credentials": []
       }
     ]
   },
