@@ -242,12 +242,13 @@
     if (!dl) return;
     $("#rt").textContent = cfg.dialogTitle || "Resume";
     const pdf = cfg.pdf || "assets/resume.pdf";
+    const fresh = u => u + (u.includes("?") ? "&" : "?") + "v=" + Date.now(); // cache-bust: resume always loads fresh
     const pages = Array.isArray(cfg.pages) ? cfg.pages : [];
     const prA = $("#pr");
-    if (prA) { prA.href = pdf; if (cfg.downloadName) prA.setAttribute("download", cfg.downloadName); }
+    if (prA) { prA.href = fresh(pdf); if (cfg.downloadName) prA.setAttribute("download", cfg.downloadName); }
 
     // Fallback render (no embedded PDF support, e.g. iPadOS Safari)
-    if (pages.length) $("#rbody").innerHTML = pages.map((u, i) => '<img class="rpg" src="' + esc(u) + '" alt="Resume, page ' + (i + 1) + " of " + pages.length + '">').join("");
+    if (pages.length) $("#rbody").innerHTML = pages.map((u, i) => '<img class="rpg" src="' + esc(fresh(u)) + '" alt="Resume, page ' + (i + 1) + " of " + pages.length + '">').join("");
 
     const canPdf = (() => {
       try { const v = navigator.pdfViewerEnabled; return v === undefined ? !/iPad|iPhone|iPod/.test(navigator.userAgent) : v === true; }
@@ -258,7 +259,7 @@
       const b = $("#rbody");
       if (!b || embedded || !canPdf) return;
       embedded = true;
-      b.innerHTML = '<iframe src="' + esc(pdf) + '" title="Resume PDF"></iframe><p><a href="' + esc(pdf) + '" target="_blank" rel="noopener">Open in a new tab</a></p>';
+      b.innerHTML = '<iframe src="' + esc(fresh(pdf)) + '" title="Resume PDF"></iframe><p><a href="' + esc(fresh(pdf)) + '" target="_blank" rel="noopener">Open in a new tab</a></p>';
     };
 
     let last;
