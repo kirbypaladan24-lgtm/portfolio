@@ -427,6 +427,12 @@
             "date": "Nov 2026",
             "verify": "https://www.credly.com/badges/0ee2c857-acce-4630-808d-540e80922a5d/public_url",
             "image": "certificates/Interactive-Front-End-Development.png"
+          },
+          {
+            "title": "Responsive Web Page Development",
+            "date":"Nov 2026",
+            "verify": "https://www.credly.com/badges/6de92232-5556-4c90-ac29-c176dbe9f9ab/public_url",
+            "image": "certificates/IBM-Responsive-Web-Page-Development.png"
           }
         ]
       },
