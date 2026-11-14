@@ -1,12 +1,13 @@
-/* Portfolio app v6 — multi-page.
+/* Portfolio app v7 — multi-page.
    Architecture: five pages share one shell (header nav, footer page index,
    resume dialog); portfolio.json stays the single source of content;
    <body data-page> selects which sections render. Page-to-page motion uses
    same-origin View Transitions where the browser supports them (the
    <meta name="view-transition"> in each <head>) — plain navigation elsewhere.
-   Home renders: hero, ticker, about, featured work, contact.
-   Work renders every project; About renders about + skills + background;
-   Credentials renders the certificate organizations; Contact renders the
+   Home renders: hero, ticker, about (+ certificate emblem strip), featured
+   work, contact. Work renders every project; About renders about (+ emblem
+   strip), skills and background; Credentials renders an emblem wall of every
+   certifying organization, then the certificate blocks; Contact renders the
    full contact page; 404 needs no data. */
 
 (() => {
@@ -50,6 +51,19 @@
     }
     render(data);
     initMotion();
+
+    // Hash targets that app.js itself renders — the credentials org blocks —
+    // arrive after the browser's own hash jump has already fired and missed.
+    // Scroll to them once they exist (and again on load, when late images
+    // have settled the layout); 72px clears the sticky header.
+    if (location.hash) {
+      const jump = () => {
+        const t = d.getElementById(location.hash.slice(1));
+        if (t) scrollTo(0, t.getBoundingClientRect().top + scrollY - 72);
+      };
+      requestAnimationFrame(jump);
+      addEventListener("load", jump);
+    }
   })();
 
   /* ---------- render dispatch ---------- */
@@ -84,6 +98,7 @@
     }
 
     if (x.about) renderAboutBlocks(x);
+    renderCertStrip(x);
 
     if (x.work) {
       const all = (x.work.projects || []).concat((x.work.more && x.work.more.projects) || []);
@@ -119,6 +134,7 @@
   /* ---------- about page (about + skills + background) ---------- */
   function renderAbout(x) {
     renderAboutBlocks(x);
+    renderCertStrip(x);
     if (x.skills) {
       if (x.skills.note) $("#skills-note").textContent = x.skills.note;
       $("#skills-grid").innerHTML = (x.skills.groups || []).map(g =>
@@ -135,6 +151,37 @@
     if (at) at.innerHTML = (x.about.paragraphs || []).map(t => "<p>" + esc(t) + "</p>").join("");
     const st = $("#about-stats");
     if (st) st.innerHTML = (x.about.stats || []).map(s => "<div><b>" + esc(s.value) + "</b><span class=\"mono\">" + esc(s.label) + "</span></div>").join("");
+  }
+
+  /* ---------- certificate emblem strip (under About me, home + about) ----------
+     Reads certificates.orgs from portfolio.json: one logo chip per
+     organization, linking to that org's credentials on the certificates page,
+     plus the button that opens the page. A "shortName" on an org overrides
+     the chip label (e.g. IBM). */
+  function renderCertStrip(x) {
+    const el = $("#cert-strip");
+    if (!el) return;
+    const orgs = x.certificates && Array.isArray(x.certificates.orgs) ? x.certificates.orgs : [];
+    if (!orgs.length) { el.remove(); return; }
+    el.innerHTML =
+      '<span class="mono">Certified by</span>' +
+      '<div class="cst-orgs">' + orgs.map(o => {
+        const n = (o.credentials || []).length;
+        const name = o.shortName || o.name || "Organization";
+        const mark = o.logo
+          ? '<img src="' + esc(o.logo) + '" alt="" loading="lazy" decoding="async">'
+          : '<span class="mono" aria-hidden="true">' + esc(initials(o.name)) + "</span>";
+        return '<a class="cst beam" href="credentials.html#org-' + orgSlug(o) + '">' + mark +
+          '<span class="mono">' + esc(name) + (n ? " · " + n : "") + "</span></a>";
+      }).join("") + "</div>" +
+      '<a class="btn p beam" href="credentials.html">View my certificates<span class="ar" aria-hidden="true"> →</span></a>';
+  }
+
+  /* Anchor id for an organization — from shortName when present ("IBM"),
+     else the full name; shared by the emblem wall links and the About strip. */
+  function orgSlug(o) {
+    return String((o && (o.shortName || o.name)) || "org").toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "org";
   }
 
   function renderBackground(rows) {
@@ -173,44 +220,26 @@
       const bg = String(x.certificates.imageBackground || "").trim();
       if (/^(#[0-9a-fA-F]{3,8}|rgba?\([\d\s,.%]+\)|hsla?\([\d\s,.%deg]+\)|[a-zA-Z]{3,20})$/.test(bg))
         cg.querySelectorAll(".cimg").forEach(el => { el.style.backgroundColor = bg; });
-      // logos: auto-sized to equal optical area (a square fills the frame height,
-      // wider marks shrink to the same area) so no logo outweighs another; a
-      // "logoSize" multiplier on an org in portfolio.json scales its logo
-      // (1 = default). Growing past 1 expands the logo band (up to ~1.45x) so
-      // bigger marks stay aligned with the name; larger values cap there.
-      // Failed logos swap to the monogram tile.
-      const sizeLogo = img => {
-        const box = img.parentNode;
-        const nw = img.naturalWidth, nh = img.naturalHeight;
-        if (!box || !nw || !nh) return;
-        const bw = box.clientWidth;
-        box.style.height = "";                  // reset, then read the CSS band
-        const bh = box.clientHeight;
-        if (!bw || !bh) return;
-        const r = nw / nh;
-        let w = Math.sqrt(bh * bh * r), h = w / r;
-        const m = parseFloat(img.dataset.size);
-        if (isFinite(m) && m > 0) { w *= m; h *= m; }
-        const band = Math.max(bh, Math.min(h, bh * 1.45));
-        const k = Math.min(bw / w, band / h, 1);
-        img.style.width = (w * k).toFixed(2) + "px";
-        img.style.height = (h * k).toFixed(2) + "px";
-        box.style.height = band.toFixed(2) + "px";
-      };
-      cg.querySelectorAll(".orgl img").forEach(img => {
-        const fail = () => {
-          if (!img.parentNode) return;
-          const m = d.createElement("span");
-          m.className = "orgm mono";
-          m.textContent = img.getAttribute("data-mono") || "";
-          img.replaceWith(m);
-        };
-        if (img.complete && img.naturalWidth === 0) fail();
-        else img.addEventListener("error", fail);
-        if (img.complete && img.naturalWidth > 0) sizeLogo(img);
-        else img.addEventListener("load", () => sizeLogo(img));
-      });
-      addEventListener("resize", () => cg.querySelectorAll(".orgl img").forEach(sizeLogo));
+
+      watchLogos(cg, true); // org-block frames may grow a little for big marks
+    }
+
+    // emblem wall — every certifying organization as one large tile above the
+    // certificates; tapping an emblem slides down to that org's credentials
+    const ow = $("#org-wall");
+    if (ow && Array.isArray(orgs)) {
+      ow.innerHTML = orgs.map(o => {
+        const n = (o.credentials || []).length;
+        const name = o.shortName || o.name || "Organization";
+        const mark = o.logo
+          ? '<img src="' + esc(o.logo) + '" alt="' + esc(name) + ' logo" loading="lazy" decoding="async">'
+          : '<span class="orgm mono">' + esc(initials(o.name)) + "</span>";
+        return '<a class="owt" href="#org-' + orgSlug(o) + '" data-r>' +
+          '<span class="orgl owl">' + mark + "</span>" +
+          '<span class="own serif">' + esc(name) + "</span>" +
+          '<span class="mono">' + n + " credential" + (n === 1 ? "" : "s") + "</span></a>";
+      }).join("");
+      watchLogos(ow, false); // wall frames stay flat — equal optical area, no multipliers
     }
   }
 
@@ -309,6 +338,54 @@
     return String(name || "").trim().split(/\s+/).map(w => w[0]).join("").slice(0, 3).toUpperCase();
   }
 
+  /* ---------- logo optical sizing (org blocks + emblem wall) ----------
+     Every logo renders inside a uniform frame, auto-sized to equal optical
+     area (a square fills the frame height, wider marks shrink to the same
+     area) so no logo outweighs another. An org's "logoSize" multiplier in
+     portfolio.json scales its mark on the org blocks — growing past 1 widens
+     the logo band (up to ~1.45x); the wall ignores multipliers and keeps its
+     frames flat. Failed logos swap to the monogram tile. */
+  const fittedLogos = [];
+  function watchLogos(scope, grow) {
+    scope.querySelectorAll(".orgl img").forEach(img => {
+      if (grow) img.dataset.grow = "1";
+      const fail = () => {
+        if (!img.parentNode) return;
+        const m = d.createElement("span");
+        m.className = "orgm mono";
+        m.textContent = img.getAttribute("data-mono") || "";
+        img.replaceWith(m);
+      };
+      if (img.complete && img.naturalWidth === 0) fail();
+      else img.addEventListener("error", fail);
+      if (img.complete && img.naturalWidth > 0) fitLogo(img);
+      else img.addEventListener("load", () => fitLogo(img));
+      fittedLogos.push(img);
+    });
+  }
+  addEventListener("resize", () => fittedLogos.forEach(img => { if (img.parentNode) fitLogo(img); }));
+
+  function fitLogo(img) {
+    const box = img.parentNode;
+    const nw = img.naturalWidth, nh = img.naturalHeight;
+    if (!box || !nw || !nh) return;
+    const bw = box.clientWidth;
+    box.style.height = "";                  // reset, then read the CSS band
+    const bh = box.clientHeight;
+    if (!bw || !bh) return;
+    const r = nw / nh;
+    let w = Math.sqrt(bh * bh * r), h = w / r;
+    const m = parseFloat(img.dataset.size);
+    if (isFinite(m) && m > 0) { w *= m; h *= m; }
+    const band = img.dataset.grow === "1"
+      ? Math.max(bh, Math.min(h, bh * 1.45))  // org blocks: the band may grow
+      : bh;                                    // wall: frames stay flat
+    const k = Math.min(bw / w, band / h, 1);
+    img.style.width = (w * k).toFixed(2) + "px";
+    img.style.height = (h * k).toFixed(2) + "px";
+    box.style.height = band.toFixed(2) + "px";
+  }
+
   /* Organization block — logo on the left, name beside it, credentials listed underneath. */
   function org(o, fxDefault) {
     let l = '<span class="orgl">';
@@ -321,7 +398,7 @@
       l += '<span class="orgm mono">' + esc(initials(o.name)) + "</span>";
     l += "</span>";
     const creds = (o.credentials || []).map(c => cred(c, o.name, fxDefault)).join("");
-    return '<article class="org" data-r>' + l +
+    return '<article class="org" id="org-' + orgSlug(o) + '" data-r>' + l +
       '<h3 class="orgn serif">' + esc(o.name || "") + "</h3>" +
       '<ul class="creds">' + creds + "</ul></article>";
   }
@@ -436,3 +513,4 @@
     }
   }
 })();
+

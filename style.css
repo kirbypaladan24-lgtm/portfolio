@@ -238,3 +238,51 @@ footer .wrap{flex-wrap:wrap;row-gap:.8rem}
 }
 @keyframes vt-out{to{opacity:0;transform:translateY(-1.2rem)}}
 @keyframes vt-in{from{opacity:0;transform:translateY(1.2rem)}}
+
+/* ── Certificate emblems ─────────────────────────────────────────────────────
+   The strip under About me (home + about pages) and the emblem wall atop the
+   credentials page both render from certificates.orgs in portfolio.json.
+   Strip: one beam-traced chip per organization — logo, short name and count —
+   linking to that org's credentials, plus the button that opens the page.
+   Wall: tiles sit in a hairline grid like the stats band; every logo rests
+   inside one flat frame, auto-sized by app.js to equal optical area. */
+
+.certstrip{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.25rem;margin-top:2.75rem;padding-top:1.75rem;border-top:1px solid var(--line)}
+.cst-orgs{display:flex;flex-wrap:wrap;gap:.7rem}
+.cst{display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;border:1px solid var(--line);border-radius:10px;text-decoration:none;color:var(--fg);transition:border-color .18s ease-out,background .25s ease-out}
+.cst:hover{border-color:var(--acc);background:var(--card)}
+.cst img{display:block;height:1.3rem;width:auto;max-width:5.5rem;object-fit:contain}
+.cst>.mono{color:var(--mut);transition:color .18s ease-out}
+.cst:is(:hover,:focus-visible)>.mono{color:var(--fg)}
+.certstrip>.btn{margin-left:auto}
+.certstrip .btn .ar{display:inline-block;margin-left:.4em;transition:transform .3s cubic-bezier(.16,1,.3,1)}
+.certstrip .btn:hover .ar{transform:translateX(.35rem)}
+@media(max-width:800px){.certstrip>.btn{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.certstrip .btn .ar{transition:none}}
+
+/* emblem wall — credentials page, between the page hero and the org blocks */
+.orgwall{border-block:1px solid var(--line)}
+body[data-page="credentials"] .phero{padding-bottom:2.75rem}
+.ow-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:1px;background:var(--line)}
+.owt{display:grid;justify-items:center;align-content:center;gap:1rem;padding:2.1rem 1.25rem;background:var(--bg);text-decoration:none;color:var(--fg);transition:background .25s ease-out}
+.owt:hover{background:var(--card)}
+.owt .owl{width:100%;height:3.4rem}
+.owt .orgm{width:100%}
+.own{font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.1;margin:0}
+.owt>.mono{color:var(--mut);transition:color .18s ease-out}
+.owt:is(:hover,:focus-visible)>.mono{color:var(--acc)}
+@media(max-width:640px){.ow-grid{grid-template-columns:1fr 1fr}.owt{padding:1.6rem .9rem;gap:.8rem}.owt .owl{height:2.6rem}}
+
+/* Light theme: the logo files are dark-theme marks (white Amazon, gray IBM),
+   so the chips, the wall logo band and the org-block logo band get a dark
+   plate to keep every emblem legible when the visitor's OS is in light mode. */
+@media(prefers-color-scheme:light){
+  :root:not([data-theme=dark]) .cst{background:#15161a;border-color:rgba(236,232,223,.16)}
+  :root:not([data-theme=dark]) .cst:hover{background:#1d2026}
+  :root:not([data-theme=dark]) .cst>.mono{color:#8b8f98}
+  :root:not([data-theme=dark]) .cst:is(:hover,:focus-visible)>.mono{color:#ece8df}
+  :root:not([data-theme=dark]) .owt .owl{background:#15161a;border-radius:10px}
+  :root:not([data-theme=dark]) .owt:hover .owl{background:#1d2026}
+  :root:not([data-theme=dark]) .orgl{background:#15161a;border-radius:8px}
+}
+

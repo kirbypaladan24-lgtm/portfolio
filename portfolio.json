@@ -438,7 +438,7 @@
     ]
   },
   "certificates": {
-    "note": "Click a certificate or its title to open the verification page",
+    "note": "Pick an organization emblem to jump to its certificates — every certificate links to its verification page",
     "effects": false,
     "imageBackground": "#0a0b0d",
     "orgs": [
@@ -496,6 +496,7 @@
       },
       {
         "name": "International Business Machines Corporation",
+        "shortName": "IBM",
         "logo": "certificates/logos/ibm.svg",
         "logoSize": 2,
         "credentials": [
@@ -642,3 +643,4 @@
     }
   }
 }
+

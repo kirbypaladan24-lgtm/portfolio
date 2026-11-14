@@ -6,10 +6,10 @@ Edit that file to add, remove or change projects, images, skills and personal de
 ## Site architecture
 
 ```
-index.html        Home — hero, ticker, about, featured work, contact
+index.html        Home — hero, ticker, about (+ certificate strip), featured work, contact
 work.html         Every project (the growth page)
-about.html        About + skills + background
-credentials.html  Certificates by organization
+about.html        About (+ certificate strip) + skills + background
+credentials.html  Emblem wall + certificates by organization
 contact.html      Full-screen contact page
 404.html          Styled lost-page fallback (GitHub Pages serves it automatically)
 ```
@@ -97,6 +97,24 @@ The contact page also shows `contact.meta` — a list of one-line facts under th
 
 **Other content** — everything else is labeled plainly: `person` (name, phone, email), `about` (paragraphs + stats), `skills.groups`, `certificates.orgs` (logos, `logoSize`, credentials), `background.rows`, `contact`, `resume`.
 
+**Certificates — the emblem showcase** — every org in `certificates.orgs` appears in three places, all driven by the same JSON:
+
+1. **The Certified-by strip** under About me (home + about pages) — one logo chip per org, linking to that org's certificates.
+2. **The emblem wall** at the top of the Certificates page — large tiles; tapping one jumps to that org's block.
+3. **The org blocks** with every credential and its verification link.
+
+```json
+{
+  "name": "International Business Machines Corporation",
+  "shortName": "IBM",
+  "logo": "certificates/logos/ibm.svg",
+  "logoSize": 2,
+  "credentials": [ … ]
+}
+```
+
+`shortName` is optional — it overrides the label on the chips and the wall (the full legal name still heads the org block). `logoSize` scales the logo on the org blocks (1 = default, values above 1 widen its band up to ~1.45×; the wall auto-sizes logos to equal optical area and ignores it). Logos live in `certificates/logos/` — add an org with a `logo` path and it joins the strip and wall automatically.
+
 **Background rows** — flat label-left layout, one block per row:
 
 ```json
@@ -125,3 +143,4 @@ Pages fetch `portfolio.json`, so they need a static server — double-clicking `
 ## Deploying
 
 Push the whole folder to GitHub and enable **GitHub Pages**, or import it to **Vercel** — no build step, no config needed. Works at any subpath (all references are relative).
+
