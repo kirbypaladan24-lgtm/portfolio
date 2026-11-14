@@ -26,6 +26,7 @@ assets/
   "image": "my-new-project.jpg",
   "description": "One or two sentences about what it is.",
   "live": "https://my-new-project.vercel.app/",
+  "github": "yourname/my-new-project",
   "details": {
     "summary": "How it works",
     "open": false,
@@ -44,7 +45,7 @@ The "10 projects" counter in the Work heading updates automatically.
 
 **Swap a project image** — overwrite the file in `assets/img/`, or point `"image"` at a new filename.
 
-**Optional fields** — `live`, `details.facts`, `details.flow` (ordered pipeline chips, like JARVIS uses), and `image` can all be `null` or omitted; the card adapts.
+**Optional fields** — `live`, `github` (repository link: full URL `"https://github.com/you/repo"` or the shorthand `"you/repo"` — renders a GitHub link beside the live-site link on the card; `null` or omitted hides it), `details.facts`, `details.flow` (ordered pipeline chips, like JARVIS uses), and `image` can all be `null` or omitted; the card adapts.
 
 **Other content** — everything else is labeled plainly: `person` (name, phone, email, links), `about` (paragraphs + stats), `skills.groups`, `contact`, `resume`.
 

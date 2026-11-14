@@ -40,7 +40,7 @@
         "label": "Projects, two in progress"
       },
       {
-        "value": "9",
+        "value": "10",
         "label": "Verifiable Certificates"
       },
       {
@@ -59,6 +59,7 @@
         "category": "Android app · Hackathon 2nd place of 7",
         "title": "Student Codex",
         "image": "student-codex.jpg",
+        "github": "kirbypaladan24-lgtm/Student-codex",
         "description": "Assignments, projects and exams reach students through Google Classroom, group chats and in-class announcements, so deadlines pile up unseen. Student Codex is an Android-first workload platform: it syncs Google Classroom coursework read-only, lets students add everything else by hand, and gives teachers a calendar view of the combined workload.",
         "live": null,
         "details": {
@@ -84,6 +85,7 @@
         "category": "Cultural heritage platform",
         "title": "Pamanang Bayan",
         "image": "pamanang-bayan.jpg",
+        "github": "https://github.com/kirbypaladan24-lgtm/bicol_indigenous_peoples_hub.git",
         "description": "A platform for preserving and sharing Indigenous knowledge across the Philippines: stories, oral histories, languages and landmarks on a map, built around consent and responsible representation.",
         "live": "https://parsucis-alpha.vercel.app/",
         "details": {
@@ -110,6 +112,7 @@
         "category": "Document assembly tool",
         "title": "Bindery",
         "image": "bindery.jpg",
+        "github": "kirbypaladan24-lgtm/Document-Binder",
         "description": "Upload documents, set their exact order, preview them full screen, then download one combined file. Temporary uploads are cleaned up automatically.",
         "live": "https://document-binder.onrender.com/",
         "details": {
@@ -135,6 +138,7 @@
         "category": "Booth ordering system",
         "title": "Coffee++",
         "image": "coffee.jpg",
+        "github": "kirbypaladan24-lgtm/Coffee-",
         "description": "A digital menu and order system for a student-organization booth. Customers order from a QR menu, the booth tracks waiting and served orders, and the admin side reports sales.",
         "live": "https://coffee-specs-org.vercel.app/",
         "details": {
@@ -158,6 +162,7 @@
         "category": "Student app showcase",
         "title": "SPECS App Store",
         "image": "specs-app-store.jpg",
+        "github": null,
         "description": "A platform where the Computer Science community showcases student-built apps — listings, submissions, voting and comments. Built together with another developer.",
         "live": "https://specs-code-canvas.vercel.app/",
         "details": {
@@ -185,6 +190,7 @@
         "category": "Business website · in planning",
         "title": "AV Fitness Gym",
         "image": "av-fitness-gym.jpg",
+        "github": "https://github.com/kirbypaladan24-lgtm/Gym-Web-Project.git",
         "description": "A website for AV Fitness Gym with a calm, dim-lit look in black, white and dark gray, built around the gym’s own logo. It’s still in planning, so it isn’t live yet.",
         "live": null,
         "details": {
@@ -210,6 +216,7 @@
           "category": "Offline voice AI",
           "title": "JARVIS",
           "image": "jarvis.jpg",
+          "github": "https://github.com/kirbypaladan24-lgtm/ProjectJarvis-V5",
           "description": "A voice-first assistant that runs on local models. Every command passes a six-layer pipeline, and a validation gate checks the small model’s tool pick before anything executes.",
           "live": null,
           "details": {
@@ -242,6 +249,7 @@
           "category": "Local code editor",
           "title": "Mini IDE",
           "image": "mini-ide.jpg",
+          "github": "kirbypaladan24-lgtm/Mini-Ide",
           "description": "An AI code editor that runs entirely on my machine. It edits several files at once, plans across the whole workspace, and shows each agent’s reasoning as it works.",
           "live": null,
           "details": {
@@ -267,8 +275,9 @@
           "category": "Roblox game · 3 published",
           "title": "AfterHours",
           "image": "afterhours.jpg",
+          "github": null,
           "description": "An open-world hangout with exploration, parkour, a SkyWars mode and a singing stage. Inventory and the item shop persist across sessions. One of three games I’ve designed and published on Roblox.",
-          "live": null,
+          "live": "https://www.roblox.com/games/90341177650213/AfterHours",
           "details": {
             "summary": "How it works",
             "open": false,
@@ -290,8 +299,9 @@
           "category": "In development",
           "title": "Horror game",
           "image": "horror-game.jpg",
+          "github": null,
           "description": "Something is stalking you, and it only moves when nobody is looking. One to five players race to collect five keys and escape.",
-          "live": null,
+          "live": "https://www.roblox.com/games/132596430590719/STILLWATCH",
           "details": {
             "summary": "How it works",
             "open": false,
@@ -415,6 +425,12 @@
             "date": "Nov 2026",
             "verify": "https://www.credly.com/badges/1d889283-07ac-4b17-9432-d62d346de5a2/public_url",
             "image": "certificates/Google-the-basics-of-google-cloud-compute-skill-badge.png"
+          },
+          {
+            "title": "Build Google Cloud Infrastructure for AWS Professionals Skill Badge",
+            "date": "Nov 2026",
+            "verify": "https://www.credly.com/badges/2f7e68f0-b58c-447e-b39a-971566526e77/public_url",
+            "image": "certificates/Google-build-google-cloud-infrastructure-for-aws-professionals.png"
           }
         ]
       },
@@ -444,7 +460,7 @@
           {
             "title": "Interactive Front-End Development",
             "date": "Nov 2026",
-            "verify": "https://www.credly.com/badges/0ee2c857-acce-4630-808d-540e80922a5d/public_url",
+            "verify": "https://www.credly.com/badges/ad130caa-ba64-4c86-a582-82889c5e247d/public_url",
             "image": "certificates/IBM-Interactive-Front-End-Development.png"
           },
           {
