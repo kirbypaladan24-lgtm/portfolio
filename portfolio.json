@@ -44,12 +44,12 @@
         "label": "Certificates"
       },
       {
-        "value": "84",
-        "label": "Tools it can route to"
+        "value": "9",
+        "label": "Languages"
       },
       {
-        "value": "6",
-        "label": "Pipeline layers"
+        "value": "12",
+        "label": "Dev tools"
       }
     ]
   },
