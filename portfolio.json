@@ -15,7 +15,16 @@
     ],
     "phone": "+63 907 817 3193",
     "email": "kirbypaladan24@gmail.com",
-    "github": "https://github.com/kirbypaladan24-lgtm"
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/kirbypaladan24-lgtm"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://www.linkedin.com/in/kirby-paladan-45470539b/"
+      }
+    ]
   },
   "ticker": [
     "Python",
@@ -79,7 +88,8 @@
           "Android",
           "Supabase",
           "PostgreSQL"
-        ]
+        ],
+        "featured": true
       },
       {
         "category": "Cultural heritage platform",
@@ -184,7 +194,8 @@
           "Supabase",
           "Vercel",
           "Collaboration"
-        ]
+        ],
+        "featured": true
       },
       {
         "category": "Business website · in planning",
@@ -244,7 +255,8 @@
             "Ollama",
             "Whisper",
             "Piper"
-          ]
+          ],
+          "featured": true
         },
         {
           "category": "Local code editor",
@@ -489,7 +501,7 @@
         "credentials": [
           {
             "title": "Software Engineering for Web Developers Pathway",
-            "date":"Nov 2026",
+            "date": "Nov 2026",
             "verify": "https://www.credly.com/users/kirby-paladan/edit/badges/credly",
             "image": "certificates/IBM-Software-Engineering-for-Web-Developers-Pathway.png"
           },
@@ -513,7 +525,7 @@
           },
           {
             "title": "Responsive Web Page Development",
-            "date":"Nov 2026",
+            "date": "Nov 2026",
             "verify": "https://www.credly.com/badges/6de92232-5556-4c90-ac29-c176dbe9f9ab/public_url",
             "image": "certificates/IBM-Responsive-Web-Page-Development.png"
           },
@@ -599,7 +611,13 @@
   },
   "contact": {
     "heading": "Let’s build <em>something.</em>",
-    "text": "Based in Goa, Camarines Sur. Looking for a Manila-based on-the-job training placement, plus collaboration and freelance projects."
+    "text": "Based in Goa, Camarines Sur. Looking for a Manila-based on-the-job training placement, plus collaboration and freelance projects.",
+    "meta": [
+      "Goa, Camarines Sur, Philippines",
+      "+63 907 817 3193",
+      "kirbypaladan24@gmail.com",
+      "Open to Manila-based OJT · collaboration · freelance"
+    ]
   },
   "resume": {
     "dialogTitle": "Resume — Kirby Paladan",
@@ -608,5 +626,19 @@
       "assets/img/resume-page-1.webp"
     ],
     "downloadName": "Kirby-Paladan-Resume.pdf"
+  },
+  "pages": {
+    "work": {
+      "lede": "Android apps, web platforms, local AI systems and games — every card opens into how it works."
+    },
+    "about": {
+      "lede": "Computer Science student at Partido State University, building past the demo — workflows, data and deployment."
+    },
+    "credentials": {
+      "lede": "Microsoft, Google Cloud, AWS and IBM credentials — every certificate links to its verification page."
+    },
+    "contact": {
+      "lede": "Looking for a Manila-based on-the-job training placement, plus collaboration and freelance projects."
+    }
   }
 }
