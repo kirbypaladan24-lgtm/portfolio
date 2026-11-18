@@ -1,3 +1,4 @@
+
 # Kirby Paladan — Portfolio
 
 A multi-page portfolio with one shared shell. **All content still lives in one file: `portfolio.json`.**
