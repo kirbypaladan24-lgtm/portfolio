@@ -49,7 +49,7 @@
         "label": "Projects"
       },
       {
-        "value": "12",
+        "value": "13",
         "label": "Certificates"
       },
       {
@@ -491,6 +491,19 @@
             "date": "Nov 2026",
             "verify": null,
             "image": "certificates/Amazon-AWS-Solutions-Architect-Fundamentals-of-Architecting-on-AWS.png"
+          }
+        ]
+      },
+      {
+        "name": "Harvard",
+        "logo": "certificates/logos/harvard.svg",
+        "logoSize": 3,
+        "credentials": [
+          {
+            "title": "CS50 Cybersecurity",
+            "date": "Nov 2026",
+            "verify": "https://certificates.cs50.io/48a4ae2d-d5e9-4f47-ab58-017db72c0bb3.pdf?size=letter",
+            "image": "certificates/CS50 Cybersecurity.png"
           }
         ]
       },
